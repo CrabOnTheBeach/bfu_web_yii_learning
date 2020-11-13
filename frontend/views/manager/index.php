@@ -1,27 +1,43 @@
 <?php
 
 use yii\helpers\Html;
-use yii\widgets\ActiveForm;
+use yii\grid\GridView;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\Manager */
-/* @var $form ActiveForm */
+/* @var $searchModel app\models\ManagerSearch */
+/* @var $dataProvider yii\data\ActiveDataProvider */
+
+$this->title = 'Managers';
+$this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="Manager">
+<div class="manager-index">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <h1><?= Html::encode($this->title) ?></h1>
 
-        <?= $form->field($model, 'status') ?>
-        <?= $form->field($model, 'firstname') ?>
-        <?= $form->field($model, 'lastname') ?>
-        <?= $form->field($model, 'password') ?>
-        <?= $form->field($model, 'login') ?>
-        <?= $form->field($model, 'email') ?>
-        <?= $form->field($model, 'phone') ?>
-    
-        <div class="form-group">
-            <?= Html::submitButton('Submit', ['class' => 'btn btn-primary']) ?>
-        </div>
-    <?php ActiveForm::end(); ?>
+    <p>
+        <?= Html::a('Create Manager', ['create'], ['class' => 'btn btn-success']) ?>
+    </p>
 
-</div><!-- Manager -->
+    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+
+    <?= GridView::widget([
+        'dataProvider' => $dataProvider,
+        'filterModel' => $searchModel,
+        'columns' => [
+            ['class' => 'yii\grid\SerialColumn'],
+
+            'id',
+            'firstname',
+            'lastname',
+            'password',
+            'login',
+            //'email:email',
+            //'phone',
+            //'status',
+
+            ['class' => 'yii\grid\ActionColumn'],
+        ],
+    ]); ?>
+
+
+</div>
