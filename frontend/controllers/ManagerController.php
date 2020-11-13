@@ -1,12 +1,14 @@
 <?php
 
-namespace app\controllers;
+namespace frontend\controllers;
 
 class ManagerController extends \yii\web\Controller
 {
     public function actionIndex()
     {
-        return $this->render('index');
+        $model = new \app\models\Manager;
+
+        return $this->render('Manager', ['model'=> $model]);
     }
 
 }

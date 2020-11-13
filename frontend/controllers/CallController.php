@@ -1,12 +1,14 @@
 <?php
 
-namespace app\controllers;
+namespace frontend\controllers;
 
 class CallController extends \yii\web\Controller
 {
     public function actionIndex()
     {
-        return $this->render('index');
+        $model = new \app\models\Call;
+
+        return $this->render('Call', ['model'=> $model]);
     }
 
 }
